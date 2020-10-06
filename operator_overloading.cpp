@@ -1,41 +1,46 @@
-/*
-*/
 #include<iostream>
 using namespace std;
 
-class Space
+class Complex
 {
-	int x,y,z;
+	int real,imag;
 public:
-	void GetData(int a,int b,int c);
-	void operator-(); //overload unary minus
-	void Display();
-};
+	Complex()
+	{
+		real = 0,imag = 0;
+	}
+	Complex(int r,int i)
+	{
+		real = r; //assigning values of private here
+		imag = i;
+	}
 
-void Space :: GetData(int a,int b,int c)
-{
-	x = a;
-	y = b;
-	z = c; 
-}
-void Space :: Display()
-{
-	cout << x << "\t" << y << "\t" << z;
-}
-void Space :: operator-()
-{
-	x = -x;
-	y = -y;
-	z = -z;
-}
+	void Print()
+	{
+		cout <<"\n" << real << " + " << imag << "i" << endl;
+	}
+
+	Complex operator +(Complex c)
+	{
+		Complex temp;
+
+		temp.real = real + c.real;
+		temp.imag = imag + c.imag;
+		return temp;
+	}
+};
 
 int main(int argc, char const *argv[])
 {
-	Space S;
-	S.GetData(10,-20,30);
-	-S; //activates  operator( function
-	cout << "S : ";
-	S.Display();
+	Complex c1(5,4); //created an obj here
+	Complex c2(2,5);
+	Complex c3;
 
+	c3 = c1+c2; // c3 = c1.add(c2)
+	c3.Print();
+
+	/*int x = 5,y = 4,z = x+y;
+	cout << "\nThe value of z is : " << z;*/
+	
 	return 0;
 }
